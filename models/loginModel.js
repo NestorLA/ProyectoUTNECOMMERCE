@@ -19,14 +19,14 @@ getUsuarios = async() => {
         console.log(error)
     }
 }
-const deletebyID = async (id) => {
+const deletebyID = async (id_usuario) => {
     const query = "DELETE FROM ?? where id = ?";
-    const params = [process.env.TABLA_USUARIO, id];
+    const params = [process.env.TABLA_USUARIO, id_usuario];
     return await pool.query(query, params);
   };
-const updateAdmin = async(id, admin) => {
+const updateAdmin = async(id_usuario, admin) => {
     const query = "UPDATE ?? SET usuario.admin = ? WHERE id = ?"
-    const params = [process.env.TABLA_USUARIO, admin, id];
+    const params = [process.env.TABLA_USUARIO, admin, id_usuario];
     return await pool.query(query,params);
 }
 const create = async (obj) => {

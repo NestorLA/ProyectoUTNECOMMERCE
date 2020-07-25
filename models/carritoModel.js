@@ -20,20 +20,20 @@ const agregarItem = async(obj) => {
     }
 
 };
-const eliminarItem = async (id) => {
+const eliminarItem = async (id_carrito) => {
     const query = "DELETE FROM ?? where id = ?";
-    const params = [process.env.TABLA_CARRITO, id];
+    const params = [process.env.TABLA_CARRITO, id_carrito];
     return await pool.query(query, params);
 };
-const eliminarCant = async(precio, cantidad, id) => {
+const eliminarCant = async(precio, cantidad, id_carrito) => {
     const query = "UPDATE ?? SET precio = ? cantidad = ? WHERE id = ?"
-    const params = [process.env.TABLA_CARRITO, precio, cantidad, id];
+    const params = [process.env.TABLA_CARRITO, precio, cantidad, id_carrito];
     return await pool.query(query, params);
 }
-getProductoCarrito = async(id) => {
+getProductoCarrito = async(id_carrito) => {
     try {
         const query = "SELECT * FROM ?? WHERE id = ?";
-        const params = [process.env.TABLA_CARRITO, id];
+        const params = [process.env.TABLA_CARRITO, id_carrito];
         const rows = await pool.query(query, params);
         return rows;
     } catch (error) {
