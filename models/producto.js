@@ -15,11 +15,11 @@ getProducts = async () => {
   }
 };
 
-getProduct = async (id) => {
+getProduct = async (id_producto) => {
   try {
     const query =
-      "SELECT id_producto, nombre, id_cerveceria ,id_categoria, volumen, precio , imagen FROM ?? WHERE id = ?";
-    const params = [process.env.TABLA_PRODUCTO, id];
+      "SELECT id_producto, nombre, id_cerveceria ,id_categoria, volumen, precio , imagen FROM ?? WHERE id_producto = ?";
+    const params = [process.env.TABLA_PRODUCTO, id_producto];
     const rows = await pool.query(query, params);
     return rows[0];
   } catch (error) {
@@ -27,11 +27,26 @@ getProduct = async (id) => {
   }
 };
 
-const update = async (id, obj) => {
-  console.log("Se actualizara el id : ", id);
+getProductConCate= async (id_producto)=>{
+  try {
+    const query=
+      "SELECT producto.id_producto, producto.nombre, producto.id_cerveceria, producto.id_categoria, producto.volumen, producto.precio, producto.imagen,producto.stock,categoria.categoria catenom FROM ?? INNER JOIN ?? ON producto.id_categoria=categoria.id_categoria where producto.id_producto = ?"
+    const rows=await pool.query(query,[
+      process.env.TABLA_PRODUCTO,
+      process.env.TABLA_CATEGORIAS,
+      id_producto]);
+    return rows[0];  
+
+  }catch (error){
+    console.log(error);
+  }
+   
+};
+const update = async (id_producto, obj) => {
+  console.log("Se actualizara el id : ", id_producto);
   console.log(obj);
-  const query = "UPDATE ?? SET ? where id = ?";
-  const params = [process.env.TABLA_PRODUCTO, obj, id];
+  const query = "UPDATE ?? SET ? where id_producto = ?";
+  const params = [process.env.TABLA_PRODUCTO, obj, id_producto];
   return await pool.query(query, params);
 };
 
@@ -46,6 +61,7 @@ const create = async (obj) => {
 module.exports = {
   getProducts,
   getProduct,
+  getProductConCate,
   create,
   update,
 };

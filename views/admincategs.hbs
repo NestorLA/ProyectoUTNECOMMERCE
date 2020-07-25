@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Categorias cargadas</h4>
+            <div class="col-4 mt-3">
+                <a class="btn btn-warning" href="/admin/categorias/alta">Alta de categorias</a>
+            
+
+            </div>
+            <table class="table table-hover table-responsive mt-3 text-center">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each categoria}}
+                    <tr>
+                        <td>{{categoria}}</td>
+                        <td><a href="/admin/categorias/modi/{{id_categoria}}"><i class="fas fa-cogs text-primary pr-3 pl-3" 
+                            style="cursor: pointer;"></i></a></td>
+                        {{!-- /admin/productos/baja/4 --}}
+                        <td><a href="/admin/categorias/baja/{{id_categoria}}"><i class="fas fa-trash text-danger pr-3 pl-3"
+                                    style="cursor: pointer;"></i></a>
+                        </td>
+                    </tr>
+                    {{!--  XMLHTTPRequest  --}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

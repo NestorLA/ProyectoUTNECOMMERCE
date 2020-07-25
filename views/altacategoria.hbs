@@ -1,0 +1,70 @@
+<div class="container" style="margin-top:10vh;">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h4>Categoria a cargar</h4>
+
+        </div>
+        <div class="col-8">
+
+            <form id="form1">
+
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
+
+
+
+                </div>
+                
+                <button id="boton" type="button" class="btn btn-warning btn-block">Alta de categoria</button>
+                
+            </form>
+        </div>
+
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<script>
+    // document
+    // window -> 
+    // listener (evento, callback/funcion)
+    window.addEventListener('load', () => {
+        console.log("Cargado..")
+        document.getElementById('boton').addEventListener('click', botonApretado);
+    });
+
+    const botonApretado = () => {
+        // console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
+        const datos = new URLSearchParams(new FormData(document.getElementById('form1')));
+        // fetch
+        fetch('/admin/categorias/alta', {
+            method: 'POST',
+            body: datos
+        })
+            .then(response => response.json())
+            .then(data => message(data));
+    }
+
+    const message = (datos) => {
+        if (datos.success == true) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Categoria cargada 🤞',
+                showConfirmButton: true,
+            })
+        } else {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Oops... Ocurrio un error 🤣',
+                showConfirmButton: true,
+            })
+        }
+    }
+    
+
+
+</script>
