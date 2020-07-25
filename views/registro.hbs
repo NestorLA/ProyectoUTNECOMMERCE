@@ -1,0 +1,42 @@
+
+    <div class="row justify-content-center">
+        <div class="col-10 text-center mb-2 mt-5">
+            <h4>Registrese</h4>
+
+        </div>
+        <div class="col-8">
+
+            <form method="post" action="/registro">
+
+                <div class="form-group">
+                    <label for="usuario">Nombre de Usuario</label>
+                    <input type="text" name="usuario" id="usuario" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" name="apellido" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo</label>
+                    <input type="mail" class="form-control" id="correo" name="correo">
+                </div>
+
+                <div class="form-group">
+                    <label for="pass">Contraseña</label>
+                    <input type="password" name="pass" id="pass" class="form-control">
+                </div>
+
+                </div>
+                <button type="submit" class="btn  btn-warning btn-block text-white">Registrarse</button>
+                <span class="text-success">{{message}}</span>
+            <a href="/login">Ya tenes cuenta? Iniciar sesion</a>
+            </form>
+            </div>
+    </div>
+
+</div>

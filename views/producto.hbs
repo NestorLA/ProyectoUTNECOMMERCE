@@ -1,0 +1,21 @@
+<section class="" style="margin-top:10em;">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-8">
+                <img src="/{{producto.imagen}}" style="width:80%; height:auto;">
+            </div>
+            <div class="col-4 mt-5">
+                <form method="post" action="/productos/single/{{producto.id}}">
+                <h2 id="nombre" name="nombre">{{producto.nombre}}</h2>
+                <h5 id="precio" name="precio">${{producto.precio}}</h5>
+                <h6 style="text-decoration: line-through;">${{precio_previo}}</h6>
+                <input type="number" placeholder="cantidad" id="cantidad" name="cantidad" aria-valuemin="1" aria-valuemax="100" required>
+                <button type="submit">Comprar</button>
+                </form>
+            </div>
+
+        </div>
+      </div>
+    </section> <!-- .section -->
+		
