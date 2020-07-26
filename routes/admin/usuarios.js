@@ -5,7 +5,7 @@ const {getUsuarios, updateAdmin, deletebyID} = require("./../../models/loginMode
 router.get("/cambiar/:id_usuario/:admin", async(req,res) => {
   if (req.session.administrador) {
       try{
-      const { id_usuario, admin } = req.params;
+      var { id_usuario, admin } = req.params;
       if(admin == 0){
         admin = 1;
         const result = await updateAdmin(id_usuario, admin);

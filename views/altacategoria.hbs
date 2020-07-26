@@ -1,7 +1,7 @@
-<div class="container" style="margin-top:10vh;">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-12">
-            <h4>Categoria a cargar</h4>
+            <h4 class="text-center">Categoria a cargar</h4>
 
         </div>
         <div class="col-8">
@@ -9,16 +9,16 @@
             <form id="form1">
 
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control">
+                    <label for="categoria">Categoria</label>
+                    <input type="text" name="categoria" id="categoria" class="form-control">
                 </div>
 
 
 
                 </div>
-                
+                <div class="col-8">
                 <button id="boton" type="button" class="btn btn-warning btn-block">Alta de categoria</button>
-                
+                </div>
             </form>
         </div>
 
@@ -36,17 +36,18 @@
     });
 
     const botonApretado = () => {
-        // console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
+         console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
         const datos = new URLSearchParams(new FormData(document.getElementById('form1')));
         // fetch
         fetch('/admin/categorias/alta', {
             method: 'POST',
             body: datos
         })
+
             .then(response => response.json())
             .then(data => message(data));
     }
-
+    // console.log(message)
     const message = (datos) => {
         if (datos.success == true) {
             Swal.fire({
