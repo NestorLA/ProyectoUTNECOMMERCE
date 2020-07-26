@@ -3,7 +3,7 @@ getProducts = async () => {
   try {
     // consultas
     const query =
-      "SELECT producto.id_producto, producto.nombre, producto.id_cerveceria,producto.id_categoria,producto.volumen,producto.precio,producto.imagen,producto.stock, categoria.categoria as nombre_categoria  FROM ?? JOIN ?? ON producto.id_categoria = categoria.id_categoria where estado = 1 order by id_producto desc";
+      "SELECT producto.id_producto, producto.nombre, producto.id_cerveceria,producto.id_categoria,producto.volumen,producto.precio,producto.imagen,producto.stock, categoria.categoria as nombre_categoria  FROM ?? JOIN ?? ON producto.id_categoria = categoria.id_categoria where estado = 1 order by id_producto";
     const rows = await pool.query(query, [
       process.env.TABLA_PRODUCTO,
       process.env.TABLA_CATEGORIA,

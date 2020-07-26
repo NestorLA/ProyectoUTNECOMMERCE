@@ -15,9 +15,9 @@
 
                 <div class="form-group">
                     <label for="cerveceria">Cerveceria</label>
-                    <select class="form-control" name="cerveceria">
+                    <select class="form-control" name="id_cerveceria">
                         <option value="0" selected disabled>Seleccioná la cerveceria</option>
-                        {{#each cerveceria}}
+                        {{#each cervecerias}}
                         <option value="{{id_cerveceria}}">{{nombre}}</option>
                         {{/each}}
                     </select>
@@ -25,9 +25,9 @@
                 
                 <div class="form-group">
                     <label for="categoria">Categoria</label>
-                  <select class="form-control" name="categoria">
+                  <select class="form-control" name="id_categoria">
                         <option value="0" selected disabled>Seleccioná la categoria</option>
-                        {{#each categoria}}
+                        {{#each categorias}}
                         <option value="{{id_categoria}}">{{categoria}}</option>
                         {{/each}}
                   </select>
@@ -39,8 +39,13 @@
                 </div>
 
                  <div class="form-group">
-                    <label for="descripcion">Precio</label>
+                    <label for="precio">Precio</label>
                     <input type="number" min="0" max="1000" id="precio" name="precio" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="stock">Stock</label>
+                    <input type="number" min="0" max="1000" id="stock" name="stock" class="form-control">
                 </div>
 
                 <div class="form-group">

@@ -10,7 +10,7 @@ const { getCategories, getCategoriesAll } = require("./../../models/categoria");
 const { getCervecerias } = require("./../../models/cerveceriaModel");
 const { saveImage } = require("../../utils/imageHandler");
 
-router.get("/baja/:id", async (req, res) => {
+router.get("/baja/:id_producto", async (req, res) => {
   if(req.session.administrador){
   try {
     const { id_producto } = req.params;
@@ -19,7 +19,7 @@ router.get("/baja/:id", async (req, res) => {
   } catch (error) {}
   }
   else{
-    res.send("no tenes permisos para ingresar")
+    res.send("No tenés permisos para ingresar")
   }
  
 });
@@ -77,7 +77,7 @@ router.get("/alta", async (req, res) => {
   if(req.session.administrador){
   const cervecerias = await getCervecerias();
   const categorias = await getCategoriesAll();
-  res.render("altaproducto", { cervecerias, categorias }); // categorias
+  res.render("altaproducto", { cervecerias, categorias });
   }
   else{
     res.send("No tenes permisos para ingresar")
@@ -85,9 +85,10 @@ router.get("/alta", async (req, res) => {
 });
 
 router.post("/alta", upload.single("imagen"), async (req, res) => {
+  console.log(req.body);
   try {
-    const { nombre, id_cerveceria, id_categoria, volumen, precio, imagen, stock, descuento } = req.body;
-    console.log(`ok ${req.body}`);
+    const { nombre, id_cerveceria, id_categoria, volumen, precio, imagen, stock } = req.body;
+    //console.log(`ok ${req.body}`);
     const img = imgHandler.saveImage(req.file);
     console.log(`La imagen se guardo como ${img}`);
     const object = {
@@ -98,10 +99,11 @@ router.post("/alta", upload.single("imagen"), async (req, res) => {
       precio: precio,
       imagen: img,
       stock : stock,
-      descuento: descuento,
     };
+    console.log(object);
     const result = await create(object);
-    console.log(`El insert id retornado es : ${result}`);
+    console.log("El insert id retornado es:");
+    console.log(result);
     res.render("altaproducto", { message: "Producto dado de alta" });
   } catch (error) {
     console.log(error);

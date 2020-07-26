@@ -36,7 +36,7 @@ router.get("/baja/:id_usuario", async (req, res) => {
     }
     }
   else{
-      res.send("no tenes permisos para ingresar")
+      res.send("No tenés permisos para ingresar")
     }
    
   });
