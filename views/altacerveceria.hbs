@@ -1,26 +1,26 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-12">
-            <h4 class="text-center">Categoría a cargar</h4>
-                <div class="d-inline-flex">
-                    <a href="/admin/categorias"><button type="button" class="btn btn-warning btn-block text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <h4 class="text-center">Cervecería a cargar</h4>
+            <div class="d-inline-flex">
+                <a href="/admin/cervecerias"><button type="button" class="btn btn-warning btn-block text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
  Volver</button></a>
             </div>
         </div>
-        <div class="col-8 mt-2">
+        <div class="col-8">
 
             <form id="form1">
 
                 <div class="form-group">
-                    <label for="categoria">Categoría</label>
-                    <input type="text" name="categoria" id="categoria" class="form-control">
+                    <label for="cerveceria">Cervecería</label>
+                    <input type="text" name="cerveceria" id="cerveceria" class="form-control">
                 </div>
 
 
 
                 </div>
                 <div class="col-8">
-                <button id="boton" type="button" class="btn btn-warning btn-block text-white">Alta de categoría</button>
+                <button id="boton" type="button" class="btn btn-warning btn-block text-white">Alta de cerveceria</button>
                 </div>
             </form>
         </div>
@@ -56,7 +56,7 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Categoria cargada 🤞',
+                title: 'Cerveceria cargada 🤞',
                 showConfirmButton: true,
             })
         } else {

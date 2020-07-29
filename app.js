@@ -17,6 +17,7 @@ const adminProductosRouter = require("./routes/admin/productos");
 const adminUsuariosRouter = require("./routes/admin/usuarios");
 const adminIndexRouter = require("./routes/admin/index");
 const adminCategoriasRouter=require("./routes/admin/categorias");
+const adminCerveceriasRouter=require("./routes/admin/cervecerias");
 var app = express();
 
 // view engine setup
@@ -45,6 +46,7 @@ app.use("/admin/productos", adminProductosRouter);
 app.use("/admin/usuarios", adminUsuariosRouter);
 app.use("/admin/index", adminIndexRouter);
 app.use("/admin/categorias",adminCategoriasRouter);
+app.use("/admin/cervecerias", adminCerveceriasRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

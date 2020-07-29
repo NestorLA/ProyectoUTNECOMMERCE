@@ -1,11 +1,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center mt-5">
-            <h4>Categorías cargadas</h4>
+            <h4>Cervecerías cargadas</h4>
             <div class="mt-3 d-flex justify-content-around">
                     <a href="/admin/index"><button type="button" class="btn btn-warning btn-block text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
  Volver</button></a>
-                    <a href="/admin/categorias/alta"><button type="button" class="btn btn-warning text-white">Alta de categorías</button></a>
+                    <a href="/admin/cervecerias/alta"><button type="button" class="btn btn-warning text-white">Alta de cervecerías</button></a>
             </div>
             <table class="table table-hover table-responsive mt-3 text-center table-bordered">
                 <thead class="bg-warning text-white">
@@ -16,13 +16,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each categorias}}
+                    {{#each cervecerias}}
                     <tr>
-                        <td>{{categoria}}</td>
-                        <td><a href="/admin/categorias/modi/{{id_categoria}}"><i class="fas fa-cogs text-primary pr-3 pl-3" 
+                        <td>{{nombre}}</td>
+                        <td><a href="/admin/cervecerias/modi/{{id_cerveceria}}"><i class="fas fa-cogs text-primary pr-3 pl-3" 
                             style="cursor: pointer;"></i></a></td>
                         {{!-- /admin/productos/baja/4 --}}
-                        <td><a href="/admin/categorias/baja/{{id_categoria}}"><i class="fas fa-trash text-danger pr-3 pl-3"
+                        <td><a href="/admin/cervecerias/baja/{{id_cerveceria}}"><i class="fas fa-trash text-danger pr-3 pl-3"
                                     style="cursor: pointer;"></i></a>
                         </td>
                     </tr>

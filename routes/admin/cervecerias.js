@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
 
   router.get("/alta", async (req, res) => {
     if(req.session.administrador){
-    const categorias = await getCervecerias();
+    const cervecerias = await getCervecerias();
     res.render("altacerveceria", { cervecerias }); // cervecerias
     }
     else{
