@@ -1,28 +1,25 @@
-<div class="container mt-5">
+<div class="container" style="margin-top:10vh;">
     <div class="row justify-content-center">
         <div class="col-12">
-            <h4 class="text-center">Categoría a cargar</h4>
-                <div class="d-inline-flex">
+            <h4 class="text-center">Categoria a modificar</h4>
+<div class="d-inline-flex">
                     <a href="/admin/categorias"><button type="button" class="btn btn-warning btn-block text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
  Volver</button></a>
             </div>
         </div>
-        <div class="col-8 mt-2">
+        <div class="col-8">
 
             <form id="form1">
-                
+                <input type="hidden" id="id_categoria" name="id_categoria" value="{{categoriaModi.id_categoria}}">
 
                 <div class="form-group">
-                    <label for="categoria">Categoría</label>
-                    <input type="text" name="categoria" id="categoria" class="form-control">
+                    <label for="nombre">Ingresa el nuevo nombre de categoría</label>
+                    <input type="text" name="categoria" id="categoria" value="{{categoriaModi.categoria}}" class="form-control">
                 </div>
 
 
-
-                </div>
-                <div class="col-8">
-                <button id="boton" type="button" class="btn btn-warning btn-block text-white">Alta de categoría</button>
-                </div>
+                <button id="boton" type="button" class="btn btn-warning btn-block text-white">Modificar producto</button>
+                <span class="text-success">{{message}}</span>
             </form>
         </div>
 
@@ -40,24 +37,23 @@
     });
 
     const botonApretado = () => {
-         console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
+        console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
         const datos = new URLSearchParams(new FormData(document.getElementById('form1')));
         // fetch
-        fetch('/admin/categorias/alta', {
+        fetch('/admin/categorias/modificar/:id', {
             method: 'POST',
             body: datos
         })
-
             .then(response => response.json())
             .then(data => message(data));
     }
-    // console.log(message)
+
     const message = (datos) => {
         if (datos.success == true) {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Categoria cargada 🤞',
+                title: 'Categoria modificada 🤞',
                 showConfirmButton: true,
             })
         } else {

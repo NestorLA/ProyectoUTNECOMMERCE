@@ -22,9 +22,8 @@
                         <td><a href="/admin/categorias/modi/{{id_categoria}}"><i class="fas fa-cogs text-primary pr-3 pl-3" 
                             style="cursor: pointer;"></i></a></td>
                         {{!-- /admin/productos/baja/4 --}}
-                        <td><a href="/admin/categorias/baja/{{id_categoria}}"><i class="fas fa-trash text-danger pr-3 pl-3"
-                                    style="cursor: pointer;"></i></a>
-                        </td>
+                        <td id="borrar"><a href="/admin/categorias/baja/{{id_categoria}}"><i class="fas fa-trash text-danger pr-3 pl-3"   style="cursor: pointer;"></i></a>
+                        </td></form>
                     </tr>
                     {{!--  XMLHTTPRequest  --}}
                     {{/each}}
@@ -33,3 +32,45 @@
         </div>
     </div>
 </div>
+
+<script>
+    // document
+    // window -> 
+    // listener (evento, callback/funcion)
+    window.addEventListener('load', () => {
+        console.log("Cargado..")
+        document.getElementById('borrar').addEventListener('click', botonApretado);
+    });
+
+    const botonApretado = () => {
+        console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
+      //  const datos = new URLSearchParams(new FormData(document.getElementById('form1')));
+        // fetch
+        fetch('/admin/categorias/baja/:id', {
+            method: 'DELETE',
+            body: datos
+        })
+            .then(response => response.json())
+            .then(data => message(data));
+    }
+
+    const message = (datos) => {
+        if (datos.success == true) {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Categoria modificada 🤞',
+                showConfirmButton: true,
+            })
+        } else {
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Oops... Ocurrio un error 🤣',
+                showConfirmButton: true,
+            })
+        }
+    }
+
+
+</script>
