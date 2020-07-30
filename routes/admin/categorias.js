@@ -1,7 +1,7 @@
 const express = require("express");
 const session = require("express-session");
 const router = express.Router();
-const { getCategories, getCategoriesAll, update, create, getUnaCategoria } = require("../../models/categoria");
+const { getCategories, getCategoriesAll, update, create, getUnaCategoria, deleteCate } = require("../../models/categoria");
 
 router.get("/modi/:id_categoria" , async (req,res) => {
 
@@ -31,6 +31,21 @@ router.post("/modificar/:id", async(req,res)=>{
 	}	
 
 });
+
+router.get("/baja/:id_categoria", async (req, res) => {
+  if(req.session.administrador){
+  try {
+    const { id_categoria } = req.params;
+    const result = await deleteCate(id_categoria);
+    res.redirect("/admin/categorias");
+  } catch (error) {}
+  }
+  else{
+    res.send("No tenés permisos para ingresar")
+  }
+ 
+});
+
 
 router.get("/alta", async (req, res) => {
   if(req.session.administrador){

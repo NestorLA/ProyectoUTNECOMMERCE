@@ -48,10 +48,18 @@ const create=async(obj)=>{
     return rows.insertId;
 };
 
+const deleteCate = async (id_categoria)=>{
+    const query = "DELETE FROM ?? where id_categoria = ?";
+    const params = [process.env.TABLA_CATEGORIA, id_categoria];
+    return await pool.query(query, params);
+  };
+
+
 module.exports = {
     getCategories,
     getCategoriesAll,
     getUnaCategoria,
     update,
     create,
+    deleteCate
 }
