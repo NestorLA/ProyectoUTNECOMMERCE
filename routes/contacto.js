@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
   const resultMail = await main({ to, subject, html });
   console.log(resultMail);
   res.render("contacto", {
-    message: "Mensaje enviado, en breve nos contactaremos",
+    message: "Mensaje enviado, en breve nos contactaremos.",
   });
   // transaction id
 });

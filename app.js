@@ -47,6 +47,7 @@ app.use("/admin/usuarios", adminUsuariosRouter);
 app.use("/admin/index", adminIndexRouter);
 app.use("/admin/categorias",adminCategoriasRouter);
 app.use("/admin/cervecerias", adminCerveceriasRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -15,10 +15,10 @@ async function main(obj) {
         pass: process.env.PASSWORD_MAIL,
       },
       tls: {
-        rejectUnauthorized: false,
+        ciphers:'SSLv3'
       },
     });
-
+   
     let info = await transporter.sendMail({
       to: obj.to,
       subject: obj.subject, // Subject line
