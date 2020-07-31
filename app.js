@@ -13,6 +13,7 @@ const LoginRouter = require("./routes/login");
 const contactoRouter = require("./routes/contacto");
 const registroRouter = require("./routes/registro");
 const carritoRouter = require("./routes/carrito");
+const tiendaRouter = require("./routes/tienda");
 const adminProductosRouter = require("./routes/admin/productos");
 const adminUsuariosRouter = require("./routes/admin/usuarios");
 const adminIndexRouter = require("./routes/admin/index");
@@ -41,6 +42,7 @@ app.use("/contacto", contactoRouter);
 app.use("/login", LoginRouter);
 app.use("/registro", registroRouter);
 app.use("/carrito", carritoRouter);
+app.use("/tienda", tiendaRouter);
 //Admin
 app.use("/admin/productos", adminProductosRouter);
 app.use("/admin/usuarios", adminUsuariosRouter);
