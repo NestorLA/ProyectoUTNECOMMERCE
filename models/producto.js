@@ -1,9 +1,26 @@
 const pool = require("../utils/bd"); // importamos la referencia de la conexion
+
+getSixProducts = async () => {
+  try {
+    // consultas
+    const query =
+      "SELECT producto.id_producto, producto.nombre, producto.descripcion, producto.id_cerveceria,producto.id_categoria,producto.volumen,producto.precio,producto.imagen,producto.stock, categoria.categoria as nombre_categoria  FROM ?? JOIN ?? ON producto.id_categoria = categoria.id_categoria where estado = 1 order by id_producto LIMIT 6";
+    const rows = await pool.query(query, [
+      process.env.TABLA_PRODUCTO,
+      process.env.TABLA_CATEGORIA,
+    ]);
+    // SELECT p.id, p.nombre, p.descripcion, p.precio, p.imagen , c.nombre, c.descripcion from producto  as p join categoria_principal as c on p.id_categoria = c.id
+    return rows;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 getProducts = async () => {
   try {
     // consultas
     const query =
-      "SELECT producto.id_producto, producto.nombre, producto.id_cerveceria,producto.id_categoria,producto.volumen,producto.precio,producto.imagen,producto.stock, categoria.categoria as nombre_categoria  FROM ?? JOIN ?? ON producto.id_categoria = categoria.id_categoria where estado = 1 order by id_producto";
+      "SELECT producto.id_producto, producto.nombre, producto.descripcion, producto.id_cerveceria,producto.id_categoria,producto.volumen,producto.precio,producto.imagen,producto.stock, categoria.categoria as nombre_categoria  FROM ?? JOIN ?? ON producto.id_categoria = categoria.id_categoria where estado = 1 order by id_producto";
     const rows = await pool.query(query, [
       process.env.TABLA_PRODUCTO,
       process.env.TABLA_CATEGORIA,
@@ -18,7 +35,7 @@ getProducts = async () => {
 getProduct = async (id_producto) => {
   try {
     const query =
-      "SELECT id_producto, nombre, id_cerveceria ,id_categoria, volumen, precio , imagen FROM ?? WHERE id_producto = ?";
+      "SELECT id_producto, nombre, descripcion, id_cerveceria ,id_categoria, volumen, precio , imagen FROM ?? WHERE id_producto = ?";
     const params = [process.env.TABLA_PRODUCTO, id_producto];
     const rows = await pool.query(query, params);
     return rows[0];
@@ -30,7 +47,7 @@ getProduct = async (id_producto) => {
 getProductConCate= async (id_producto)=>{
   try {
     const query=
-      "SELECT producto.id_producto, producto.nombre, producto.id_cerveceria, producto.id_categoria, producto.volumen, producto.precio, producto.imagen,producto.stock,categoria.categoria catenom FROM ?? INNER JOIN ?? ON producto.id_categoria=categoria.id_categoria where producto.id_producto = ?"
+      "SELECT producto.id_producto, producto.nombre, producto.descripcion, producto.id_cerveceria, producto.id_categoria, producto.volumen, producto.precio, producto.imagen,producto.stock,categoria.categoria catenom FROM ?? INNER JOIN ?? ON producto.id_categoria=categoria.id_categoria where producto.id_producto = ?"
     const rows=await pool.query(query,[
       process.env.TABLA_PRODUCTO,
       process.env.TABLA_CATEGORIAS,
@@ -59,6 +76,7 @@ const create = async (obj) => {
   return rows.insertId; // insertId -> id del ultimo elemento creado
 };
 module.exports = {
+  getSixProducts,
   getProducts,
   getProduct,
   getProductConCate,

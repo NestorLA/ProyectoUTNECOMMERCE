@@ -2,7 +2,7 @@ const pool = require('./../utils/bd');
 
 getCategories = async () => {
     try {
-        const query = "select id_categoria, categoria from categoria order by id_categoria desc LIMIT 5 ";
+        const query = "select id_categoria, categoria from categoria order by categoria LIMIT 7 ";
         const rows = await pool.query(query);
         console.log(rows);
         return rows;

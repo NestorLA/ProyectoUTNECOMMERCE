@@ -87,12 +87,13 @@ router.get("/alta", async (req, res) => {
 router.post("/alta", upload.single("imagen"), async (req, res) => {
   console.log(req.body);
   try {
-    const { nombre, id_cerveceria, id_categoria, volumen, precio, imagen, stock } = req.body;
+    const { nombre, descripcion, id_cerveceria, id_categoria, volumen, precio, imagen, stock } = req.body;
     //console.log(`ok ${req.body}`);
     const img = imgHandler.saveImage(req.file);
     console.log(`La imagen se guardo como ${img}`);
     const object = {
       nombre: nombre,
+      descripcion: descripcion,
       id_cerveceria : parseInt(id_cerveceria),
       id_categoria: parseInt(id_categoria),
       volumen : volumen,

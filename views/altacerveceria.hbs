@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     <label for="cerveceria">Cervecería</label>
-                    <input type="text" name="cerveceria" id="cerveceria" class="form-control">
+                    <input type="text" name="nombre" id="cerveceria" class="form-control">
                 </div>
 
 
@@ -42,7 +42,7 @@
          console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
         const datos = new URLSearchParams(new FormData(document.getElementById('form1')));
         // fetch
-        fetch('/admin/categorias/alta', {
+        fetch('/admin/cervecerias/alta', {
             method: 'POST',
             body: datos
         })
