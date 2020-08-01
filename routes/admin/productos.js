@@ -105,7 +105,7 @@ router.post("/alta", upload.single("imagen"), async (req, res) => {
     const result = await create(object);
     console.log("El insert id retornado es:");
     console.log(result);
-    res.render("altaproducto", { message: "Producto dado de alta" });
+    res.redirect("/alta");
   } catch (error) {
     console.log(error);
     // error.hbs

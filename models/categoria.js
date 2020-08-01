@@ -13,7 +13,7 @@ getCategories = async () => {
 
 getCategoriesAll = async () => {
     try {
-        const query = "select id_categoria,categoria from ?? ";
+        const query = "select id_categoria,categoria from ?? order by categoria";
         const params=[process.env.TABLA_CATEGORIA];
         const rows = await pool.query(query,params);
         return rows;
