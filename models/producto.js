@@ -38,6 +38,7 @@ getProduct = async (id_producto) => {
       "SELECT id_producto, nombre, descripcion, id_cerveceria ,id_categoria, volumen, precio , imagen FROM ?? WHERE id_producto = ?";
     const params = [process.env.TABLA_PRODUCTO, id_producto];
     const rows = await pool.query(query, params);
+    console.log("ESTOS ROWS SALEN DE GETPRODUCT " + rows[0]);
     return rows[0];
   } catch (error) {
     console.log(error);
