@@ -1,10 +1,10 @@
 const pool = require("../utils/bd"); // importamos la referencia de la conexion
 
-getSixProducts = async () => {
+getTwelveProducts = async () => {
   try {
     // consultas
     const query =
-      "SELECT producto.id_producto, producto.nombre, producto.descripcion, producto.id_cerveceria,producto.id_categoria,producto.volumen,producto.precio,producto.imagen,producto.stock, categoria.categoria as nombre_categoria  FROM ?? JOIN ?? ON producto.id_categoria = categoria.id_categoria where estado = 1 order by id_producto LIMIT 6";
+      "SELECT producto.id_producto, producto.nombre, producto.descripcion, producto.id_cerveceria,producto.id_categoria,producto.volumen,producto.precio,producto.imagen,producto.stock, categoria.categoria as nombre_categoria  FROM ?? JOIN ?? ON producto.id_categoria = categoria.id_categoria where estado = 1 order by id_producto LIMIT 12";
     const rows = await pool.query(query, [
       process.env.TABLA_PRODUCTO,
       process.env.TABLA_CATEGORIA,
@@ -77,7 +77,7 @@ const create = async (obj) => {
   return rows.insertId; // insertId -> id del ultimo elemento creado
 };
 module.exports = {
-  getSixProducts,
+  getTwelveProducts,
   getProducts,
   getProduct,
   getProductConCate,

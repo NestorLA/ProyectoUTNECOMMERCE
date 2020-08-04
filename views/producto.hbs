@@ -1,21 +1,37 @@
-<section class="" style="margin-top:10em;">
-      <div class="container">
-        <div class="row">
+<div class="single-product-area section-padding-100 clearfix">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-7">
+        <div class="single_product_thumb">
+          <img src="/images/{{producto.imagen}}">
+            </div>
+          </div>
+      <div class="col-12 col-lg-5">
+        <div class="single_product_desc">
+          <!-- Product Meta Data -->
+          <div class="product-meta-data">
+            <div class="line"></div>
+            <p class="product-price" name="precio">${{producto.precio}}</p>            
+              <h6 name="nombre_producto">{{producto.nombre}}</h6>
+             <!-- Avaiable -->
+            <p class="avaibility"><i class="fa fa-circle"></i>En Stock</p>
+          </div>
 
-            <div class="col-8">
-                <img src="/{{producto.imagen}}" style="width:80%; height:auto;">
+          <div class="short_overview my-5">
+            <p>{{producto.descripcion}}</p>
+          </div>
+
+          <!-- Add to Cart Form -->
+          <form class="cart clearfix" method="post" action="/tienda/single/{{producto.id_producto}}">
+            <div class="cart-btn d-flex mb-50">
+              <p>Cantidad</p>
+              <input type="number" placeholder="1" id="cantidad" name="cantidad" aria-valuemin="1" aria-valuemax="100" required>
             </div>
-            <div class="col-4 mt-5">
-                <form method="post" action="/productos/single/{{producto.id}}">
-                <h2 id="nombre" name="nombre">{{producto.nombre}}</h2>
-                <h5 id="precio" name="precio">${{producto.precio}}</h5>
-                <h6 style="text-decoration: line-through;">${{precio_previo}}</h6>
-                <input type="number" placeholder="cantidad" id="cantidad" name="cantidad" aria-valuemin="1" aria-valuemax="100" required>
-                <button type="submit">Comprar</button>
-                </form>
-            </div>
+            <button type="submit" class="btn amado-btn">Agregar al carrito</button>
+          </form>
 
         </div>
       </div>
-    </section> <!-- .section -->
-		
+    </div>
+    </div>
+    </div>

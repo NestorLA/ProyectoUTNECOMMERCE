@@ -1,46 +1,52 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h4 class="text-center mt-5">Productos cargados</h4>
+<div class="products-catagories-area clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="text-center mt-5">Productos cargados</h4>
                 <div class="mt-3 d-flex justify-content-around">
-                    <a href="/admin/index"><button type="button" class="btn btn-warning btn-block text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
- Volver</button></a>
-                    <a href="/admin/productos/alta"><button type="button" class="btn btn-warning text-white">Alta de producto</button></a>
-                {{!-- admin/productos/alta --}}
+                    <a href="/admin/index"><button type="button" class="btn amado-btn"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Volver</button></a>
+                    <a href="/admin/productos/alta"><button type="button" class="btn amado-btn">Alta de
+                            producto</button></a>
+                    {{!-- admin/productos/alta --}}
 
                 </div>
-            <table class="table table-hover table-responsive mt-3 text-center table-bordered">
-                <thead class="bg-warning text-white">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Imágen</th>
-                        <th>Precio</th>
-                        <th>Categoría</th>
-                        <th>Modificar</th>
-                        <th>Eliminar</th>
+                <table class="table table-hover table-responsive mt-3 text-center table-bordered">
+                    <thead class="bg-warning text-white">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Imágen</th>
+                            <th>Precio</th>
+                            <th>Categoría</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
 
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each productos}}
-                    <tr>
-                        <td>{{nombre}}</td>
-                        <td>{{descripcion}}</td>
-                        <td><img src="/images/{{imagen}}" style="width:100px; height:auto"></td>
-                        <td>${{precio}}</td>
-                        <td>{{nombre_categoria}}</td>
-                        <td><a href="/admin/productos/modi/{{id_producto}}"><i class="fas fa-cogs text-primary pr-3 pl-3"></i></a></td>
-                        {{!-- /admin/productos/baja/4 --}}
-                        <td>{{estado}}<i class="fas fa-trash text-danger pr-3 pl-3" style="cursor: pointer;" onclick="deshabilitar(0,{{id_producto}})"></i>
-                        </td>
-                    </tr>
-                    {{!--  XMLHTTPRequest  --}}
-                    {{/each}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each productos}}
+                        <tr>
+                            <td>{{nombre}}</td>
+                            <td>{{descripcion}}</td>
+                            <td><img src="/images/{{imagen}}" style="width:100px; height:auto"></td>
+                            <td>${{precio}}</td>
+                            <td>{{nombre_categoria}}</td>
+                            <td><a href="/admin/productos/modi/{{id_producto}}"><i
+                                        class="fas fa-cogs text-primary pr-3 pl-3"></i></a></td>
+                            {{!-- /admin/productos/baja/4 --}}
+                            <td>{{estado}}<i class="fas fa-trash text-danger pr-3 pl-3" style="cursor: pointer;"
+                                    onclick="deshabilitar(0,{{id_producto}})"></i>
+                            </td>
+                        </tr>
+                        {{!--  XMLHTTPRequest  --}}
+                        {{/each}}
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -63,7 +69,7 @@
     const message = (dato) => {
         console.log(dato);
         if (dato.status) {
-       Swal.fire({
+            Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Estado actualizado',
