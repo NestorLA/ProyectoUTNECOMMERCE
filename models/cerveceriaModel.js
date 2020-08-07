@@ -17,8 +17,14 @@ const create=async(obj)=>{
     return rows.insertId;
 };
 
+const deleteCerve = async (id_cerveceria)=>{
+    const query = "DELETE FROM ?? where id_cerveceria = ?";
+    const params = [process.env.TABLA_CERVECERIA, id_cerveceria];
+    return await pool.query(query, params);
+  };
 
 module.exports = {
     getCervecerias,
-    create
+    create,
+    deleteCerve
 }

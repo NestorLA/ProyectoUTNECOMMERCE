@@ -4,8 +4,8 @@
             <div class="col-12">
                 <h4 class="text-center mt-5">Productos cargados</h4>
                 <div class="mt-3 d-flex justify-content-around">
-                    <a href="/admin/index"><button type="button" class="btn amado-btn"><i
-                                class="fa fa-arrow-left" aria-hidden="true"></i>
+                    <a href="/admin/index"><button type="button" class="btn amado-btn"><i class="fa fa-arrow-left"
+                                aria-hidden="true"></i>
                             Volver</button></a>
                     <a href="/admin/productos/alta"><button type="button" class="btn amado-btn">Alta de
                             producto</button></a>
@@ -37,8 +37,8 @@
                             <td><a href="/admin/productos/modi/{{id_producto}}"><i
                                         class="fas fa-cogs text-primary pr-3 pl-3"></i></a></td>
                             {{!-- /admin/productos/baja/4 --}}
-                            <td>{{estado}}<i class="fas fa-trash text-danger pr-3 pl-3" style="cursor: pointer;"
-                                    onclick="deshabilitar(0,{{id_producto}})"></i>
+                            <td><a href="/admin/productos/baja/{{id_producto}}"><i class="fas fa-trash text-danger pr-3 pl-3"
+                                        style="cursor: pointer;"></i></a>
                             </td>
                         </tr>
                         {{!--  XMLHTTPRequest  --}}

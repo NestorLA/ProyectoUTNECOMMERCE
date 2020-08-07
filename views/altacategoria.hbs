@@ -1,28 +1,30 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <h4 class="text-center">Categoría a cargar</h4>
+<div class="products-catagories-area clearfix">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <h4 class="text-center">Categoría a cargar</h4>
                 <div class="d-inline-flex">
-                    <a href="/admin/categorias"><button type="button" class="btn btn-warning btn-block text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
- Volver</button></a>
+                    <a href="/admin/categorias"><button type="button" class="btn btn-block amado-btn"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Volver</button></a>
+                </div>
             </div>
-        </div>
-        <div class="col-8 mt-2">
+            <div class="col-8 mt-2">
 
-            <form id="form1">
-                
-
-                <div class="form-group">
-                    <label for="categoria">Categoría</label>
-                    <input type="text" name="categoria" id="categoria" class="form-control">
-                </div>
+                <form id="form1">
 
 
+                    <div class="form-group">
+                        <label for="categoria">Categoría</label>
+                        <input type="text" name="categoria" id="categoria" class="form-control">
+                    </div>
 
-                </div>
-                <div class="col-8">
-                <button id="boton" type="button" class="btn btn-warning btn-block text-white">Alta de categoría</button>
-                </div>
+
+
+            </div>
+            <div class="col-8">
+                <button id="boton" type="button" class="btn btn-block amado-btn">Alta de categoría</button>
+            </div>
             </form>
         </div>
 
@@ -40,7 +42,7 @@
     });
 
     const botonApretado = () => {
-         console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
+        console.log("%cUpss me apretaron 😜🐱‍🏍", "color:red");
         const datos = new URLSearchParams(new FormData(document.getElementById('form1')));
         // fetch
         fetch('/admin/categorias/alta', {
@@ -69,7 +71,7 @@
             })
         }
     }
-    
+
 
 
 </script>

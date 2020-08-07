@@ -1,34 +1,41 @@
-<div class="container">
-    <div class="row">
-        <div class="col-12 text-center mt-5">
-            <h4>Categorías cargadas</h4>
-            <div class="mt-3 d-flex justify-content-around">
-                    <a href="/admin/index"><button type="button" class="btn btn-warning btn-block text-white"><i class="fa fa-arrow-left" aria-hidden="true"></i>
- Volver</button></a>
-                    <a href="/admin/categorias/alta"><button type="button" class="btn btn-warning text-white">Alta de categorías</button></a>
+<div class="products-catagories-area clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mt-5">
+                <h4>Categorías cargadas</h4>
+                <div class="mt-3 d-flex justify-content-around">
+                    <a href="/admin/index"><button type="button" class="btn btn-block amado-btn"><i
+                                class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Volver</button></a>
+                    <a href="/admin/categorias/alta"><button type="button" class="btn amado-btn">Alta de
+                            categorías</button></a>
+                </div>
+                <table class="table table-hover table-responsive mt-3 text-center table-bordered">
+                    <thead class="bg-warning text-white">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Modificar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each categorias}}
+                        <tr>
+                            <td>{{categoria}}</td>
+                            <td><a href="/admin/categorias/modi/{{id_categoria}}"><i
+                                        class="fas fa-cogs text-primary pr-3 pl-3" style="cursor: pointer;"></i></a>
+                            </td>
+                            {{!-- /admin/productos/baja/4 --}}
+                            <td><a href="/admin/categorias/baja/{{id_categoria}}"><i
+                                        class="fas fa-trash text-danger pr-3 pl-3" style="cursor: pointer;"></i></a>
+                            </td>
+                            </form>
+                        </tr>
+                        {{!--  XMLHTTPRequest  --}}
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
-            <table class="table table-hover table-responsive mt-3 text-center table-bordered">
-                <thead class="bg-warning text-white">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Modificar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each categorias}}
-                    <tr>
-                        <td>{{categoria}}</td>
-                        <td><a href="/admin/categorias/modi/{{id_categoria}}"><i class="fas fa-cogs text-primary pr-3 pl-3" 
-                            style="cursor: pointer;"></i></a></td>
-                        {{!-- /admin/productos/baja/4 --}}
-                        <td><a href="/admin/categorias/baja/{{id_categoria}}"><i class="fas fa-trash text-danger pr-3 pl-3"   style="cursor: pointer;"></i></a>
-                        </td></form>
-                    </tr>
-                    {{!--  XMLHTTPRequest  --}}
-                    {{/each}}
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

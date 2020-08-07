@@ -41,7 +41,7 @@ router.get("/baja/:id_categoria", async (req, res) => {
   } catch (error) {}
   }
   else{
-    res.send("No tenés permisos para ingresar")
+    res.render("error");
   }
  
 });
@@ -53,7 +53,7 @@ router.get("/alta", async (req, res) => {
   res.render("altacategoria", { categorias }); // categorias
   }
   else{
-    res.send("No tenés permisos para ingresar")
+    res.render("error");
   }
 });
 
@@ -81,7 +81,7 @@ router.get("/", async (req, res) => {
     } catch (error) {}
     }
     else{
-      res.send("No tenés permisos para ingresar")
+      res.render("error");
     }
   });
   /* Publicar productos */

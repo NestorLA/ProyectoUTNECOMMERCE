@@ -5,30 +5,34 @@ const imgHandler = require("./../../utils/imageHandler");
 const multer = require("multer");
 const config = { dest: "./public/tmp" }; // si no está creada -> multer la crea
 const upload = multer(config);
-const { getProducts, create, update, getProduct, getProductConCate } = require("./../../models/producto");
+const {
+  getProducts,
+  create,
+  update,
+  getProduct,
+  getProductConCate,
+} = require("./../../models/producto");
 const { getCategories, getCategoriesAll } = require("./../../models/categoria");
 const { getCervecerias } = require("./../../models/cerveceriaModel");
 const { saveImage } = require("../../utils/imageHandler");
 
-// router.get("/baja/:id_producto", async (req, res) => {
-//   if(req.session.administrador){
-//   try {
-//     const { id_producto } = req.params;
-//     const result = await update(id_producto, { estado: 0 });
-//     res.redirect("/admin/productos");
-//   } catch (error) {}
-//   }
-//   else{
-//     res.send("No tenés permisos para ingresar")
-//   }
- 
-// });
-
-router.put("/baja/:id_producto", (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body);
-  res.json({ status: true });
+router.get("/baja/:id_producto", async (req, res) => {
+  if (req.session.administrador) {
+    try {
+      const { id_producto } = req.params;
+      const result = await update(id_producto, { estado: 0 });
+      res.redirect("/admin/productos");
+    } catch (error) {}
+  } else {
+    res.render("error");
+  }
 });
+
+// router.put("/baja/:id_producto", (req, res) => {
+//   console.log(req.params.id);
+//   console.log(req.body);
+//   res.json({ status: true });
+// });
 
 // router.get("/modi/:id",async(req,res)=>{
 //   if(req.session.administrador){
@@ -50,14 +54,12 @@ router.put("/baja/:id_producto", (req, res) => {
 
 // });
 
-router.get("/modi/:id_producto" , async (req,res) => {
-
+router.get("/modi/:id_producto", async (req, res) => {
   const { id_producto } = req.params;
-  const productoModi= await getProduct(id_producto);
+  const productoModi = await getProduct(id_producto);
   const cervecerias = await getCervecerias();
-  const categorias = await getCategoriesAll(); 
-  res.render("modiproducto",{productoModi, cervecerias, categorias});
-
+  const categorias = await getCategoriesAll();
+  res.render("modiproducto", { productoModi, cervecerias, categorias });
 });
 
 // router.post("/modificar/:id", async (req, res) => {
@@ -85,62 +87,81 @@ router.get("/modi/:id_producto" , async (req,res) => {
 //   }
 // });
 
-router.post("/modificar/:id", async(req,res)=>{
-	try{
-
-	//const { id_categoria }= req.params;
-	const { id_producto, nombre,id_cerveceria,id_categoria,volumen,precio,stock,descuento }=req.body;
-		const obj= { 
+router.post("/modificar/:id", async (req, res) => {
+  try {
+    //const { id_categoria }= req.params;
+    const {
+      id_producto,
+      nombre,
+      id_cerveceria,
+      id_categoria,
+      volumen,
+      precio,
+      stock,
+      descuento,
+    } = req.body;
+    const obj = {
       nombre: nombre,
       id_cerveceria: parseInt(id_cerveceria),
       id_categoria: parseInt(id_categoria),
-      volumen:volumen,
+      volumen: volumen,
       precio: precio,
-      stock:stock,
+      stock: stock,
       descuento: descuento,
-    };	
-        console.log(`nestor:D:D:D el objeto es ${obj}`);
-        console.log(`nestor:D:D:D el id es ${id_producto}`);
-		const result=await update(id_producto,obj);
-		res.json({success:true});
-	} catch (error){
-    
+    };
+    console.log(`nestor:D:D:D el objeto es ${obj}`);
+    console.log(`nestor:D:D:D el id es ${id_producto}`);
+    const result = await update(id_producto, obj);
+    res.json({ success: true });
+  } catch (error) {
     console.log(error);
-		res.json({success:false});
-	}	
-  
+    res.json({ success: false });
+  }
+
   res.redirect("admin/productos");
 });
 
 /* /admin/productos/alta */
 
 router.get("/alta", async (req, res) => {
-  if(req.session.administrador){
-  const cervecerias = await getCervecerias();
-  const categorias = await getCategoriesAll();
-  res.render("altaproducto", { cervecerias, categorias });
-  }
-  else{
-    res.send("No tenes permisos para ingresar")
+  if (req.session.administrador) {
+    try {
+      const cervecerias = await getCervecerias();
+      const categorias = await getCategoriesAll();
+      res.render("altaproducto", { cervecerias, categorias });
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    res.render("error");
   }
 });
 
 router.post("/alta", upload.single("imagen"), async (req, res) => {
   console.log(req.body);
   try {
-    const { nombre, descripcion, id_cerveceria, id_categoria, volumen, precio, imagen, stock } = req.body;
+    const {
+      nombre,
+      descripcion,
+      id_cerveceria,
+      id_categoria,
+      volumen,
+      precio,
+      imagen,
+      stock,
+    } = req.body;
     //console.log(`ok ${req.body}`);
     const img = imgHandler.saveImage(req.file);
     console.log(`La imagen se guardo como ${img}`);
     const object = {
       nombre: nombre,
       descripcion: descripcion,
-      id_cerveceria : parseInt(id_cerveceria),
+      id_cerveceria: parseInt(id_cerveceria),
       id_categoria: parseInt(id_categoria),
-      volumen : volumen,
+      volumen: volumen,
       precio: precio,
       imagen: img,
-      stock : stock,
+      stock: stock,
     };
     console.log(object);
     const result = await create(object);
@@ -155,14 +176,13 @@ router.post("/alta", upload.single("imagen"), async (req, res) => {
 
 /* Cargar todos los productos en la página */
 router.get("/", async (req, res) => {
-  if(req.session.administrador){
-  try {
-    const productos = await getProducts();
-    res.render("adminprods", { productos });
-  } catch (error) {}
-  }
-  else{
-    res.send("No tenes permisos para ingresar")
+  if (req.session.administrador) {
+    try {
+      const productos = await getProducts();
+      res.render("adminprods", { productos });
+    } catch (error) {}
+  } else {
+    res.render("error");
   }
 });
 /* Publicar productos */

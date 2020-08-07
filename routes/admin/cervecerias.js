@@ -1,7 +1,21 @@
 const express = require("express");
 const session = require("express-session");
 const router = express.Router();
-const { getCervecerias, create } = require("./../../models/cerveceriaModel");
+const { getCervecerias, create, deleteCerve } = require("./../../models/cerveceriaModel");
+
+router.get("/baja/:id_cerveceria", async (req, res) => {
+  if(req.session.administrador){
+  try {
+    const { id_cerveceria} = req.params;
+    const result = await deleteCerve(id_cerveceria);
+    res.redirect("/admin/cervecerias");
+  } catch (error) {}
+  }
+  else{
+    res.render("error");
+  }
+ 
+});
 
 router.get("/alta", async (req, res) => {
   if(req.session.administrador){
@@ -9,7 +23,7 @@ router.get("/alta", async (req, res) => {
     res.render("altacerveceria", { cervecerias }); // cervecerias
   }
   else{
-    res.send("no tenes permisos para ingresar")
+    res.render("error");
   }
 });
 
@@ -36,7 +50,7 @@ router.get("/", async (req, res) => {
     } catch (error) {}
     }
     else{
-      res.send("No tenes permisos para ingresar")
+      res.render("error");
     }
   });
 
