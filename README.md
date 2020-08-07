@@ -30,3 +30,5 @@ Se usó un template de colorlib.
     <li>Bootstrap 4</li>
     <li>Javascript</li>
 </ul>
+
+Un saludo a todos, Néstor Acerbo.
